@@ -1,99 +1,35 @@
 import { CssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
 import Box from "@mui/joy/Box";
-
 import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import MotorComponent from "./components/pages/motor";
-import HomeComponent from "./components/pages/home";
+import { Route, Routes, useLocation } from "react-router-dom";
+import LoginComponent from "./components/auth/login";
+import WorkerList from "./components/pages/workerList";
+import JobOfferDetail from "./components/pages/jobOfferDetail";
+import AddNewWorker from "./components/pages/addWorker";
 
 export default function JoyOrderDashboardTemplate() {
+  let location = useLocation();
+
+  const hiddenSideBar =
+    location.pathname === "/" || location.pathname === "/sign-up";
   return (
     <CssVarsProvider disableTransitionOnChange>
       <CssBaseline />
       <Box sx={{ display: "flex", minHeight: "100dvh" }}>
-        <Header />
-        <Sidebar />
-
+        {!hiddenSideBar && <Sidebar />}
         <Routes>
-          <Route path="/" element={<HomeComponent />} />
-          <Route path="/motor" element={<MotorComponent />} />
+          <Route path="/" element={<LoginComponent />} />
+          <Route path="/out-rourcing-worker-list" element={<WorkerList />} />
+          <Route
+            path="/out-rourcing-worker-list/:id"
+            element={<JobOfferDetail />}
+          />
+          <Route
+            path="/out-rourcing-worker-list/add-new-worker"
+            element={<AddNewWorker />}
+          />
         </Routes>
-
-        {/* <Box
-          component="main"
-          className="MainContent"
-          sx={{
-            px: { xs: 2, md: 6 },
-            pt: {
-              xs: "calc(12px + var(--Header-height))",
-              sm: "calc(12px + var(--Header-height))",
-              md: 3,
-            },
-            pb: { xs: 2, sm: 2, md: 3 },
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            minWidth: 0,
-            height: "100dvh",
-            gap: 1,
-          }}
-        >
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Breadcrumbs
-              size="sm"
-              aria-label="breadcrumbs"
-              separator={<ChevronRightRoundedIcon />}
-              sx={{ pl: 0 }}
-            >
-              <Link
-                underline="none"
-                color="neutral"
-                href="#some-link"
-                aria-label="Home"
-              >
-                <HomeRoundedIcon />
-              </Link>
-              <Link
-                underline="hover"
-                color="neutral"
-                href="#some-link"
-                fontSize={12}
-                fontWeight={500}
-              >
-                Dashboard
-              </Link>
-              <Typography color="primary" fontWeight={500} fontSize={12}>
-                Orders
-              </Typography>
-            </Breadcrumbs>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              mb: 1,
-              gap: 1,
-              flexDirection: { xs: "column", sm: "row" },
-              alignItems: { xs: "start", sm: "center" },
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-            }}
-          >
-            <Typography level="h2" component="h1">
-              Orders
-            </Typography>
-            <Button
-              color="primary"
-              startDecorator={<DownloadRoundedIcon />}
-              size="sm"
-            >
-              Download PDF
-            </Button>
-          </Box>
-          <OrderTable />
-          <OrderList />
-        </Box> */}
       </Box>
     </CssVarsProvider>
   );
