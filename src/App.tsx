@@ -5,8 +5,6 @@ import Sidebar from "./components/Sidebar";
 import { Route, Routes, useLocation } from "react-router-dom";
 import LoginComponent from "./components/auth/login";
 import WorkerList from "./components/pages/workerList";
-import JobOfferDetail from "./components/pages/jobOfferDetail";
-import AddNewWorker from "./components/pages/addWorker";
 
 export default function JoyOrderDashboardTemplate() {
   let location = useLocation();
@@ -21,14 +19,6 @@ export default function JoyOrderDashboardTemplate() {
         <Routes>
           <Route path="/" element={<LoginComponent />} />
           <Route path="/out-rourcing-worker-list" element={<WorkerList />} />
-          <Route
-            path="/out-rourcing-worker-list/:id"
-            element={<JobOfferDetail />}
-          />
-          <Route
-            path="/out-rourcing-worker-list/add-new-worker"
-            element={<AddNewWorker />}
-          />
         </Routes>
       </Box>
     </CssVarsProvider>
