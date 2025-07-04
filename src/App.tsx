@@ -4,7 +4,10 @@ import Box from "@mui/joy/Box";
 import Sidebar from "./components/Sidebar";
 import { Route, Routes, useLocation } from "react-router-dom";
 import LoginComponent from "./components/auth/login";
-import WorkerList from "./components/pages/workerList";
+
+import AddProduct from "./components/pages/CampingProduct";
+import CampingPlace from "./components/pages/Place";
+import UserList from "./components/pages/UserList";
 
 export default function JoyOrderDashboardTemplate() {
   let location = useLocation();
@@ -18,7 +21,9 @@ export default function JoyOrderDashboardTemplate() {
         {!hiddenSideBar && <Sidebar />}
         <Routes>
           <Route path="/" element={<LoginComponent />} />
-          <Route path="/out-rourcing-worker-list" element={<WorkerList />} />
+          <Route path="/camping-car-product" element={<AddProduct />} />
+          <Route path="/camping-place" element={<CampingPlace />} />
+          <Route path="/user-list" element={<UserList />} />
         </Routes>
       </Box>
     </CssVarsProvider>

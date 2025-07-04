@@ -17,7 +17,8 @@ import Button from "@mui/joy/Button";
 import Modal from "@mui/joy/Modal";
 import React from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
-
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import PlaceIcon from "@mui/icons-material/Place";
 export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -110,33 +111,47 @@ export default function Sidebar() {
             }}
           >
             <Link
-              to={"/out-rourcing-worker-list"}
+              to={"/camping-car-product"}
               style={{ textDecoration: "none" }}
             >
               <ListItemButton
                 sx={{
-                  backgroundColor: isActive("/out-rourcing-worker-list")
+                  backgroundColor: isActive("/camping-car-product")
+                    ? "lightgray"
+                    : "transparent",
+                }}
+              >
+                <DirectionsCarIcon />
+                <ListItemContent>
+                  <Typography level="title-sm">Camper Products</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </Link>
+            <Link to={"/camping-place"} style={{ textDecoration: "none" }}>
+              <ListItemButton
+                sx={{
+                  backgroundColor: isActive("/camping-place")
+                    ? "lightgray"
+                    : "transparent",
+                }}
+              >
+                <PlaceIcon />
+                <ListItemContent>
+                  <Typography level="title-sm">Camping Place</Typography>
+                </ListItemContent>
+              </ListItemButton>
+            </Link>
+            <Link to={"/user-list"} style={{ textDecoration: "none" }}>
+              <ListItemButton
+                sx={{
+                  backgroundColor: isActive("/user-list")
                     ? "lightgray"
                     : "transparent",
                 }}
               >
                 <GroupIcon />
                 <ListItemContent>
-                  <Typography level="title-sm">Worker List</Typography>
-                </ListItemContent>
-              </ListItemButton>
-            </Link>
-            <Link to={"/setting"} style={{ textDecoration: "none" }}>
-              <ListItemButton
-                sx={{
-                  backgroundColor: isActive("/setting")
-                    ? "lightgray"
-                    : "transparent",
-                }}
-              >
-                <SettingsIcon />
-                <ListItemContent>
-                  <Typography level="title-sm">Setting</Typography>
+                  <Typography level="title-sm">User List</Typography>
                 </ListItemContent>
               </ListItemButton>
             </Link>
